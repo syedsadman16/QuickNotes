@@ -17,7 +17,8 @@ import java.util.HashSet;
 
 public class EditNote extends AppCompatActivity {
     SharedPreferences sharedPreferences;
-    EditText color;
+    EditText background;
+    String color;
     int position;
 
     @Override
@@ -29,16 +30,18 @@ public class EditNote extends AppCompatActivity {
         Intent intent = getIntent();
         //Get the position of array index
         position = intent.getIntExtra("notePosition", -1);
+        editText.setText(MainActivity.notes.get(position));
 
-        //If you got here by clicking list item
+
+       /* //If you got here by clicking list item
         if(position != -1){
-            editText.setText(MainActivity.notes.get(position));
+
         } else {
             //When adding a new note
             MainActivity.notes.add("");
             position = MainActivity.notes.size() - 1;
         }
-
+        */
 
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -72,33 +75,61 @@ public class EditNote extends AppCompatActivity {
 
     //Setting up the colors
     public void changeGreen(View view){
-        int green = Color.parseColor("#D4EFDF");
-        color = findViewById(R.id.editText);
-        color.setBackgroundColor(green);
-        sharedPreferences.edit().putInt("color", green).apply();
+        if(MainActivity.notes.get(position) == ""){
 
+        }
+        color = "#D4EFDF";
+
+        MainActivity.listBackground.getChildAt(position).setBackgroundColor(Color.parseColor(color));
+
+        background = findViewById(R.id.editText);
+        background.setBackgroundColor(Color.parseColor("#D4EFDF"));
     }
+
     public void changeWhite(View view){
-        color = findViewById(R.id.editText);
-        color.setBackgroundColor(Color.parseColor("#FEF9E7"));
+        color = "#FEF9E7";
+
+        MainActivity.listBackground.getChildAt(position).setBackgroundColor(Color.parseColor(color));
+
+
+        background = findViewById(R.id.editText);
+        background.setBackgroundColor(Color.parseColor("#FEF9E7"));
     }
+
     public void changeBlue(View view){
-        color = findViewById(R.id.editText);
-        color.setBackgroundColor(Color.parseColor("#AED6F1"));
+        color = "#AED6F1";
+
+        MainActivity.listBackground.getChildAt(position).setBackgroundColor(Color.parseColor(color));
+
+        background = findViewById(R.id.editText);
+        background.setBackgroundColor(Color.parseColor("#AED6F1"));
     }
+
     public void changeYellow(View view){
-        color = findViewById(R.id.editText);
-        color.setBackgroundColor(Color.parseColor("#F9E79F"));
+        color = "#F9E79F";
+
+        MainActivity.listBackground.getChildAt(position).setBackgroundColor(Color.parseColor(color));
+
+        background = findViewById(R.id.editText);
+        background.setBackgroundColor(Color.parseColor("#F9E79F"));
     }
+
     public void changeRed(View view){
-        color = findViewById(R.id.editText);
-        color.setBackgroundColor(Color.parseColor("#F1948A"));
+        color = "#F1948A";
+
+        MainActivity.listBackground.getChildAt(position).setBackgroundColor(Color.parseColor(color));
+
+        background = findViewById(R.id.editText);
+        background.setBackgroundColor(Color.parseColor("#F1948A"));
     }
+
     public void changePurple(View view){
-        color = findViewById(R.id.editText);
-        color.setBackgroundColor(Color.parseColor("#D2B4DE"));
+        color = "#D2B4DE";
+
+        MainActivity.listBackground.getChildAt(position).setBackgroundColor(Color.parseColor(color));
+
+        background = findViewById(R.id.editText);
+        background.setBackgroundColor(Color.parseColor("#D2B4DE"));
     }
-
-
 
 }

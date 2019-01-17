@@ -19,16 +19,24 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+/****
+ * USE: CLICK TAB TO CREATE NEW NOTE. HOLD TO DELETE NOTE. CLICK NOTE TO EDIT
+ * BUGS: SAVING AND LOADING COLORS
+ *
+ */
+
 public class MainActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     static ArrayList<String> notes = new ArrayList<String>();
     static ArrayAdapter adapter;
-
+    static ListView listBackground;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        listBackground = findViewById(R.id.listView);
 
         //Created ListView
         final ListView listView = findViewById(R.id.listView);
@@ -59,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), EditNote.class);
                 //In order to access array index, we need to pass the position
-
+                Log.i("Existing", Integer.toString(position));
                 intent.putExtra("notePosition",position);
                 startActivity(intent);
 
@@ -102,19 +110,24 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //Create menu item
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
-    //whenever an item is selected
+    //CREATING NEW NOTES
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
          super.onOptionsItemSelected(item);
-         //check menu item and get the id
+
          if (item.getItemId() == R.id.newNote) {
-             //when new note is clicked
+
              Intent toEditNote = new Intent(getApplicationContext(), EditNote.class);
+
+             notes.add("");
+             adapter.notifyDataSetChanged();
+             int position = MainActivity.notes.size() - 1;
+             toEditNote.putExtra("notePosition",position);
+
              startActivity(toEditNote);
              return true;
          }

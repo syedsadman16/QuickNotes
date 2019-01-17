@@ -9,6 +9,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+/***
+To be used if I decide to serialize/deserialize app data
+ Used to save ArrayList in SharedPreferences without converting it into a Set
+ ***/
 
 public class ObjectSerializer {
 
