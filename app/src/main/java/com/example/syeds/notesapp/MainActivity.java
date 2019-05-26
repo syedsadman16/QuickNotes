@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             notes = new ArrayList(set);
         }
 
+        //LOAD SAVED NOTES
         adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, notes);
         listView.setAdapter(adapter);
 

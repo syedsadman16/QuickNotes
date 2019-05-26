@@ -33,16 +33,6 @@ public class EditNote extends AppCompatActivity {
         editText.setText(MainActivity.notes.get(position));
 
 
-       /* //If you got here by clicking list item
-        if(position != -1){
-
-        } else {
-            //When adding a new note
-            MainActivity.notes.add("");
-            position = MainActivity.notes.size() - 1;
-        }
-        */
-
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -75,9 +65,7 @@ public class EditNote extends AppCompatActivity {
 
     //Setting up the colors
     public void changeGreen(View view){
-        if(MainActivity.notes.get(position) == ""){
 
-        }
         color = "#D4EFDF";
 
         MainActivity.listBackground.getChildAt(position).setBackgroundColor(Color.parseColor(color));
